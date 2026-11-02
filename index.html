@@ -56,7 +56,9 @@ button{font:inherit;font-weight:800;font-size:16px;border:0;border-radius:6px;pa
 button:disabled{opacity:.45}
 .tarjeta{background:var(--elevado);border-radius:6px;padding:12px;margin:10px 0}
 .tarjeta.tienda{border-left:6px solid var(--acero,#5B6670)}
-#kpis{display:flex;gap:8px;background:none;padding:0}
+#kpis{display:flex;gap:8px;background:none;padding:0;margin-top:4px}
+#actRow{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+#actRow .link{padding:4px 0}
 .kpi{flex:1;background:var(--elevado);border-radius:6px;padding:10px;border-top:5px solid var(--linea)}
 .kpi b{display:block;font-family:var(--titulos);font-size:28px;line-height:30px}
 .kpi span{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--suave)}
@@ -69,13 +71,12 @@ button:disabled{opacity:.45}
 
 /* ---- conteo ---- */
 #arriba{position:sticky;top:0;z-index:5;background:var(--fondo);padding-top:env(safe-area-inset-top);box-shadow:0 1px 0 var(--linea)}
-#barraSup{display:flex;align-items:center;gap:10px;padding:8px 16px}
-#barraSup .logo-sm{height:26px;width:auto;flex:none;margin-left:-4px}
-#tiendaBox{display:flex;align-items:center;gap:6px;min-width:0;flex-wrap:wrap}
-#barraSup b{font-family:var(--titulos);font-size:17px;line-height:20px}
+#barraSup{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 16px 6px}
+#tiendaBox{display:flex;align-items:center;gap:8px;padding:0 16px 10px}
+#tiendaBox b{font-family:var(--titulos);font-size:18px;line-height:22px}
 #puntoTienda{width:10px;height:10px;border-radius:3px;background:var(--acero,#5B6670);flex:none}
-#barraSup #btnTerminar{margin-left:auto;background:var(--rojo);color:#fff;border:0;padding:9px 16px;font-size:15px}
-#estadoSync{margin-left:auto;align-self:center;font-size:11px;font-weight:800;text-align:right;min-width:70px}
+#barraSup #btnTerminar{background:var(--rojo);color:#fff;border:0;padding:8px 14px;font-size:14px}
+#estadoSync{margin-left:auto;font-size:11px;font-weight:800;text-align:right}
 #estadoSync.pend{color:var(--alerta)}#estadoSync.ok{color:var(--positivo)}
 #cam{position:relative;width:100%;aspect-ratio:16/10;background:#171515;overflow:hidden}
 #cam video{width:100%;height:100%;object-fit:cover;display:block}
@@ -86,7 +87,7 @@ button:disabled{opacity:.45}
 #destello.ok{background:rgba(111,154,60,.62)}#destello.nuevo{background:rgba(227,155,27,.66)}#destello.caja{background:rgba(31,110,140,.62)}
 #pausa{position:absolute;inset:0;display:none;align-items:center;justify-content:center;color:#fff;font-weight:800;background:rgba(0,0,0,.55)}
 #herr{display:flex;gap:6px;padding:8px 16px}
-#herr button{flex:0 1 90px;padding:10px 4px;font-size:14px}
+#herr button{flex:1;padding:10px 4px;font-size:14px}
 #ultimo{display:none;align-items:center;gap:12px;background:var(--elevado);border-radius:6px;padding:12px;margin:12px 0 0}
 #ultimo .desc{font-family:var(--titulos);font-weight:700;font-size:18px;line-height:22px}
 #ultimo .lleva{text-align:center;min-width:64px}
@@ -121,7 +122,8 @@ td.n b{font-family:var(--titulos);font-size:20px}
 .fila{display:flex;gap:8px}.fila>*{flex:1}
 #toast{position:fixed;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom) + 16px);z-index:30;background:var(--tinta);color:#fff;border-radius:8px;padding:12px 14px;font-size:14px;font-weight:700;opacity:0;transform:translateY(20px);transition:all .25s;pointer-events:none}
 #toast.on{opacity:1;transform:none}
-.fila-ses{display:flex;align-items:center;gap:10px}.fila-ses>div{flex:1}.fila-ses button{padding:10px 14px;font-size:14px}
+.fila-ses{display:flex;align-items:center;gap:10px}.fila-ses>div{flex:1;min-width:0}.fila-ses button{width:auto;flex:none;white-space:nowrap;padding:10px 16px;font-size:14px}
+.cancelar-ses,.fila-ses button.cancelar-ses{background:none;border:0;padding:6px 0 0;font-size:12px;font-weight:700;color:var(--suave);text-decoration:underline}
 </style>
 </head>
 <body>
@@ -162,7 +164,8 @@ td.n b{font-family:var(--titulos);font-size:20px}
 <!-- ============ CONTEO ============ -->
 <section class="pag" id="pConteo">
   <div id="arriba">
-    <div id="barraSup"><svg class="logo-sm" aria-label="coloratodo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1365 420" width="1365" height="420"><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#D7140F" transform="rotate(20 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#1F6E8C" transform="rotate(325 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#E39B1B" transform="rotate(270 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#6F9A3C" transform="rotate(215 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#F08A5D" transform="rotate(160 210.00 210.00)"></rect><path d="M415.2 196.6Q405.2 196.6 397.9 203.0Q390.6 209.4 390.6 221.8Q390.6 234.2 397.6 240.2Q404.6 246.2 415.0 246.2Q421.0 246.2 425.7 244.7Q430.4 243.2 433.6 241.6Q437.4 244.4 439.29999999999995 247.60000000000002Q441.2 250.8 441.2 255.4Q441.2 263.4 433.29999999999995 268.2Q425.4 273.0 410.8 273.0Q394.2 273.0 381.9 267.2Q369.6 261.4 362.9 249.89999999999998Q356.2 238.4 356.2 221.8Q356.2 204.2 363.6 192.7Q371.0 181.2 383.2 175.5Q395.4 169.8 409.8 169.8Q424.0 169.8 431.9 175.0Q439.8 180.2 439.8 188.39999999999998Q439.8 192.2 438.0 195.5Q436.2 198.8 433.8 201.2Q430.4 199.6 425.6 198.1Q420.8 196.6 415.2 196.6Z" fill="#1B1A1A"></path><path d="M554.8 221.4Q554.8 237.4 548.336563876652 248.9823529411765Q541.873127753304 260.56470588235294 530.1004405286344 266.88235294117646Q518.3277533039648 273.2 502.40000000000003 273.2Q486.59418604651165 273.2 474.7970930232558 267.0Q463.0 260.8 456.5 249.2Q450.0 237.6 450.0 221.4Q450.0 205.50326086956522 456.6 193.9516304347826Q463.2 182.39999999999998 475.0 176.1Q486.8 169.8 502.47457627118644 169.8Q518.1491525423729 169.8 529.9050847457627 176.1905325443787Q541.6610169491526 182.58106508875738 548.2305084745763 194.1905325443787Q554.8 205.8 554.8 221.4ZM502.3537735849057 196.39999999999998Q494.20000000000005 196.39999999999998 489.5 202.89999999999998Q484.8 209.4 484.8 221.4Q484.8 233.8 489.44109589041096 240.2Q494.0821917808219 246.6 502.40000000000003 246.6Q510.8 246.6 515.4 240.1Q520.0 233.6 520.0 221.4Q520.0 209.6 515.3146226415095 203.0Q510.6292452830189 196.39999999999998 502.3537735849057 196.39999999999998Z" fill="#1B1A1A"></path><path d="M568.4 217.2H602.4V269.8Q600.2 270.4 596.1 271.0Q592.0 271.6 587.2 271.6Q577.4 271.6 572.9 268.20000000000005Q568.4 264.8 568.4 255.6ZM602.4 235.0H568.4V139.6Q570.6 139.0 574.7 138.39999999999998Q578.8 137.79999999999998 583.6 137.79999999999998Q593.6 137.79999999999998 598.0 141.09999999999997Q602.4 144.39999999999998 602.4 153.8Z" fill="#1B1A1A"></path><path d="M720.8 221.4Q720.8 237.4 714.336563876652 248.9823529411765Q707.873127753304 260.56470588235294 696.1004405286344 266.88235294117646Q684.3277533039648 273.2 668.4 273.2Q652.5941860465116 273.2 640.7970930232558 267.0Q629.0 260.8 622.5 249.2Q616.0 237.6 616.0 221.4Q616.0 205.50326086956522 622.5999999999999 193.9516304347826Q629.1999999999999 182.39999999999998 641.0 176.1Q652.8 169.8 668.4745762711864 169.8Q684.1491525423728 169.8 695.9050847457627 176.1905325443787Q707.6610169491526 182.58106508875738 714.2305084745763 194.1905325443787Q720.8 205.8 720.8 221.4ZM668.3537735849056 196.39999999999998Q660.1999999999999 196.39999999999998 655.5 202.89999999999998Q650.8 209.4 650.8 221.4Q650.8 233.8 655.4410958904109 240.2Q660.0821917808219 246.6 668.4 246.6Q676.8 246.6 681.4 240.1Q686.0 233.6 686.0 221.4Q686.0 209.6 681.3146226415095 203.0Q676.6292452830188 196.39999999999998 668.3537735849056 196.39999999999998Z" fill="#1B1A1A"></path><path d="M767.4 201.39999999999998V224.2H733.4V196.2Q733.4 190.39999999999998 736.5 186.1Q739.6 181.8 744.6 178.6Q751.6 174.39999999999998 761.0 172.2Q770.4 170.0 780.4 170.0Q802.2 170.0 802.2 185.39999999999998Q802.2 189.0 801.2 192.1Q800.2 195.2 798.8 197.39999999999998Q796.8 197.0 794.0 196.8Q791.2 196.6 787.8 196.6Q782.8 196.6 777.2 197.8Q771.6 199.0 767.4 201.39999999999998ZM733.4 217.2H767.4V269.8Q765.2 270.4 761.1 271.0Q757.0 271.6 752.2 271.6Q742.4 271.6 737.9 268.20000000000005Q733.4 264.8 733.4 255.6Z" fill="#1B1A1A"></path><path d="M853.2 248.4Q856.6 248.4 860.7 247.7Q864.8000000000001 247.0 866.8000000000001 245.8V229.8L852.4000000000001 231.0Q846.8000000000001 231.4 843.2 233.4Q839.6 235.4 839.6 239.4Q839.6 243.4 842.7 245.9Q845.8000000000001 248.4 853.2 248.4ZM851.6 169.8Q873.4000000000001 169.8 886.5 178.7Q899.6 187.6 899.6 206.4V251.2Q899.6 256.4 896.7 259.7Q893.8000000000001 263.0 889.8000000000001 265.4Q883.4000000000001 269.2 874.2 271.2Q865.0 273.2 853.2 273.2Q832.2 273.2 819.5 265.1Q806.8000000000001 257.0 806.8000000000001 240.6Q806.8000000000001 226.8 815.1000000000001 219.4Q823.4000000000001 212.0 840.4000000000001 210.2L866.6 207.4V206.0Q866.6 200.2 861.5 197.7Q856.4000000000001 195.2 846.8000000000001 195.2Q839.4000000000001 195.2 832.1000000000001 196.79999999999998Q824.8000000000001 198.39999999999998 819.0 200.8Q816.4000000000001 199.0 814.6000000000001 195.3Q812.8000000000001 191.6 812.8000000000001 187.6Q812.8000000000001 178.0 823.0 174.0Q828.8000000000001 171.8 836.7 170.8Q844.6 169.8 851.6 169.8Z" fill="#D7140F"></path><path d="M916.8 217.2H950.4V236.6Q950.4 241.6 953.7 243.89999999999998Q957.0 246.2 963.0 246.2Q966.0 246.2 969.2 245.7Q972.4 245.2 974.8 244.4Q976.6 246.4 977.9000000000001 249.2Q979.2 252.0 979.2 255.8Q979.2 263.2 973.5 268.1Q967.8 273.0 953.4 273.0Q935.8 273.0 926.3 265.0Q916.8 257.0 916.8 239.0ZM938.8 201.0V175.0H976.6Q977.8 177.0 978.9 180.4Q980.0 183.8 980.0 187.8Q980.0 194.8 976.9 197.9Q973.8 201.0 968.6 201.0ZM950.4 222.0H916.8V150.2Q919.0 149.6 923.1 148.89999999999998Q927.2 148.2 931.8 148.2Q941.6 148.2 946.0 151.6Q950.4 155.0 950.4 164.2Z" fill="#1B1A1A"></path><path d="M1092.4 221.4Q1092.4 237.4 1085.9365638766521 248.9823529411765Q1079.473127753304 260.56470588235294 1067.7004405286343 266.88235294117646Q1055.9277533039647 273.2 1040.0 273.2Q1024.1941860465115 273.2 1012.3970930232558 267.0Q1000.6 260.8 994.1 249.2Q987.6 237.6 987.6 221.4Q987.6 205.50326086956522 994.2 193.9516304347826Q1000.8 182.39999999999998 1012.6 176.1Q1024.4 169.8 1040.0745762711865 169.8Q1055.749152542373 169.8 1067.5050847457628 176.1905325443787Q1079.2610169491525 182.58106508875738 1085.8305084745762 194.1905325443787Q1092.4 205.8 1092.4 221.4ZM1039.9537735849055 196.39999999999998Q1031.8 196.39999999999998 1027.1 202.89999999999998Q1022.4 209.4 1022.4 221.4Q1022.4 233.8 1027.041095890411 240.2Q1031.682191780822 246.6 1040.0 246.6Q1048.4 246.6 1053.0 240.1Q1057.6 233.6 1057.6 221.4Q1057.6 209.6 1052.9146226415094 203.0Q1048.2292452830188 196.39999999999998 1039.9537735849055 196.39999999999998Z" fill="#1B1A1A"></path><path d="M1167.1999999999998 243.8V185.8H1201.0V248.6Q1201.0 253.6 1198.9 257.2Q1196.8 260.8 1192.1999999999998 263.6Q1186.3999999999999 267.4 1177.1999999999998 270.29999999999995Q1168.0 273.2 1156.1999999999998 273.2Q1138.8 273.2 1126.4 267.4Q1114.0 261.6 1107.4 250.10000000000002Q1100.8 238.6 1100.8 221.8Q1100.8 204.2 1107.6 192.7Q1114.3999999999999 181.2 1126.1 175.5Q1137.8 169.8 1152.1999999999998 169.8Q1159.1999999999998 169.8 1164.3999999999999 171.2Q1169.6 172.6 1173.0 174.39999999999998V202.0Q1170.3999999999999 200.0 1166.2999999999997 198.2Q1162.1999999999998 196.39999999999998 1157.0 196.39999999999998Q1150.1999999999998 196.39999999999998 1145.2999999999997 199.2Q1140.3999999999999 202.0 1137.7999999999997 207.6Q1135.1999999999998 213.2 1135.1999999999998 221.8Q1135.1999999999998 234.4 1140.6999999999998 240.4Q1146.1999999999998 246.4 1156.0 246.4Q1159.6 246.4 1162.6 245.5Q1165.6 244.6 1167.1999999999998 243.8ZM1201.0 192.2H1167.0V139.6Q1169.1999999999998 139.0 1173.2999999999997 138.39999999999998Q1177.3999999999999 137.79999999999998 1182.1999999999998 137.79999999999998Q1192.1999999999998 137.79999999999998 1196.6 141.09999999999997Q1201.0 144.39999999999998 1201.0 153.8Z" fill="#1B1A1A"></path><path d="M1318.8 221.4Q1318.8 237.4 1312.3365638766518 248.9823529411765Q1305.8731277533038 260.56470588235294 1294.1004405286344 266.88235294117646Q1282.3277533039648 273.2 1266.3999999999999 273.2Q1250.5941860465116 273.2 1238.797093023256 267.0Q1227.0 260.8 1220.5 249.2Q1214.0 237.6 1214.0 221.4Q1214.0 205.50326086956522 1220.6 193.9516304347826Q1227.2 182.39999999999998 1239.0 176.1Q1250.8 169.8 1266.4745762711864 169.8Q1282.1491525423728 169.8 1293.9050847457627 176.1905325443787Q1305.6610169491526 182.58106508875738 1312.2305084745763 194.1905325443787Q1318.8 205.8 1318.8 221.4ZM1266.3537735849056 196.39999999999998Q1258.2 196.39999999999998 1253.5 202.89999999999998Q1248.8 209.4 1248.8 221.4Q1248.8 233.8 1253.441095890411 240.2Q1258.0821917808219 246.6 1266.3999999999999 246.6Q1274.8 246.6 1279.4 240.1Q1284.0 233.6 1284.0 221.4Q1284.0 209.6 1279.3146226415095 203.0Q1274.629245283019 196.39999999999998 1266.3537735849056 196.39999999999998Z" fill="#1B1A1A"></path></svg><div id="tiendaBox"><i id="puntoTienda"></i><b id="tituloConteo">Conteo</b> <span class="chip" id="chipTipo"></span></div><button id="btnTerminar">Finalizar</button></div>
+    <div id="barraSup"><svg class="logo" aria-label="coloratodo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1365 420" width="1365" height="420"><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#D7140F" transform="rotate(20 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#1F6E8C" transform="rotate(325 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#E39B1B" transform="rotate(270 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#6F9A3C" transform="rotate(215 210.00 210.00)"></rect><rect x="181.10" y="53.60" width="57.80" height="95.20" rx="8.50" fill="#F08A5D" transform="rotate(160 210.00 210.00)"></rect><path d="M415.2 196.6Q405.2 196.6 397.9 203.0Q390.6 209.4 390.6 221.8Q390.6 234.2 397.6 240.2Q404.6 246.2 415.0 246.2Q421.0 246.2 425.7 244.7Q430.4 243.2 433.6 241.6Q437.4 244.4 439.29999999999995 247.60000000000002Q441.2 250.8 441.2 255.4Q441.2 263.4 433.29999999999995 268.2Q425.4 273.0 410.8 273.0Q394.2 273.0 381.9 267.2Q369.6 261.4 362.9 249.89999999999998Q356.2 238.4 356.2 221.8Q356.2 204.2 363.6 192.7Q371.0 181.2 383.2 175.5Q395.4 169.8 409.8 169.8Q424.0 169.8 431.9 175.0Q439.8 180.2 439.8 188.39999999999998Q439.8 192.2 438.0 195.5Q436.2 198.8 433.8 201.2Q430.4 199.6 425.6 198.1Q420.8 196.6 415.2 196.6Z" fill="#1B1A1A"></path><path d="M554.8 221.4Q554.8 237.4 548.336563876652 248.9823529411765Q541.873127753304 260.56470588235294 530.1004405286344 266.88235294117646Q518.3277533039648 273.2 502.40000000000003 273.2Q486.59418604651165 273.2 474.7970930232558 267.0Q463.0 260.8 456.5 249.2Q450.0 237.6 450.0 221.4Q450.0 205.50326086956522 456.6 193.9516304347826Q463.2 182.39999999999998 475.0 176.1Q486.8 169.8 502.47457627118644 169.8Q518.1491525423729 169.8 529.9050847457627 176.1905325443787Q541.6610169491526 182.58106508875738 548.2305084745763 194.1905325443787Q554.8 205.8 554.8 221.4ZM502.3537735849057 196.39999999999998Q494.20000000000005 196.39999999999998 489.5 202.89999999999998Q484.8 209.4 484.8 221.4Q484.8 233.8 489.44109589041096 240.2Q494.0821917808219 246.6 502.40000000000003 246.6Q510.8 246.6 515.4 240.1Q520.0 233.6 520.0 221.4Q520.0 209.6 515.3146226415095 203.0Q510.6292452830189 196.39999999999998 502.3537735849057 196.39999999999998Z" fill="#1B1A1A"></path><path d="M568.4 217.2H602.4V269.8Q600.2 270.4 596.1 271.0Q592.0 271.6 587.2 271.6Q577.4 271.6 572.9 268.20000000000005Q568.4 264.8 568.4 255.6ZM602.4 235.0H568.4V139.6Q570.6 139.0 574.7 138.39999999999998Q578.8 137.79999999999998 583.6 137.79999999999998Q593.6 137.79999999999998 598.0 141.09999999999997Q602.4 144.39999999999998 602.4 153.8Z" fill="#1B1A1A"></path><path d="M720.8 221.4Q720.8 237.4 714.336563876652 248.9823529411765Q707.873127753304 260.56470588235294 696.1004405286344 266.88235294117646Q684.3277533039648 273.2 668.4 273.2Q652.5941860465116 273.2 640.7970930232558 267.0Q629.0 260.8 622.5 249.2Q616.0 237.6 616.0 221.4Q616.0 205.50326086956522 622.5999999999999 193.9516304347826Q629.1999999999999 182.39999999999998 641.0 176.1Q652.8 169.8 668.4745762711864 169.8Q684.1491525423728 169.8 695.9050847457627 176.1905325443787Q707.6610169491526 182.58106508875738 714.2305084745763 194.1905325443787Q720.8 205.8 720.8 221.4ZM668.3537735849056 196.39999999999998Q660.1999999999999 196.39999999999998 655.5 202.89999999999998Q650.8 209.4 650.8 221.4Q650.8 233.8 655.4410958904109 240.2Q660.0821917808219 246.6 668.4 246.6Q676.8 246.6 681.4 240.1Q686.0 233.6 686.0 221.4Q686.0 209.6 681.3146226415095 203.0Q676.6292452830188 196.39999999999998 668.3537735849056 196.39999999999998Z" fill="#1B1A1A"></path><path d="M767.4 201.39999999999998V224.2H733.4V196.2Q733.4 190.39999999999998 736.5 186.1Q739.6 181.8 744.6 178.6Q751.6 174.39999999999998 761.0 172.2Q770.4 170.0 780.4 170.0Q802.2 170.0 802.2 185.39999999999998Q802.2 189.0 801.2 192.1Q800.2 195.2 798.8 197.39999999999998Q796.8 197.0 794.0 196.8Q791.2 196.6 787.8 196.6Q782.8 196.6 777.2 197.8Q771.6 199.0 767.4 201.39999999999998ZM733.4 217.2H767.4V269.8Q765.2 270.4 761.1 271.0Q757.0 271.6 752.2 271.6Q742.4 271.6 737.9 268.20000000000005Q733.4 264.8 733.4 255.6Z" fill="#1B1A1A"></path><path d="M853.2 248.4Q856.6 248.4 860.7 247.7Q864.8000000000001 247.0 866.8000000000001 245.8V229.8L852.4000000000001 231.0Q846.8000000000001 231.4 843.2 233.4Q839.6 235.4 839.6 239.4Q839.6 243.4 842.7 245.9Q845.8000000000001 248.4 853.2 248.4ZM851.6 169.8Q873.4000000000001 169.8 886.5 178.7Q899.6 187.6 899.6 206.4V251.2Q899.6 256.4 896.7 259.7Q893.8000000000001 263.0 889.8000000000001 265.4Q883.4000000000001 269.2 874.2 271.2Q865.0 273.2 853.2 273.2Q832.2 273.2 819.5 265.1Q806.8000000000001 257.0 806.8000000000001 240.6Q806.8000000000001 226.8 815.1000000000001 219.4Q823.4000000000001 212.0 840.4000000000001 210.2L866.6 207.4V206.0Q866.6 200.2 861.5 197.7Q856.4000000000001 195.2 846.8000000000001 195.2Q839.4000000000001 195.2 832.1000000000001 196.79999999999998Q824.8000000000001 198.39999999999998 819.0 200.8Q816.4000000000001 199.0 814.6000000000001 195.3Q812.8000000000001 191.6 812.8000000000001 187.6Q812.8000000000001 178.0 823.0 174.0Q828.8000000000001 171.8 836.7 170.8Q844.6 169.8 851.6 169.8Z" fill="#D7140F"></path><path d="M916.8 217.2H950.4V236.6Q950.4 241.6 953.7 243.89999999999998Q957.0 246.2 963.0 246.2Q966.0 246.2 969.2 245.7Q972.4 245.2 974.8 244.4Q976.6 246.4 977.9000000000001 249.2Q979.2 252.0 979.2 255.8Q979.2 263.2 973.5 268.1Q967.8 273.0 953.4 273.0Q935.8 273.0 926.3 265.0Q916.8 257.0 916.8 239.0ZM938.8 201.0V175.0H976.6Q977.8 177.0 978.9 180.4Q980.0 183.8 980.0 187.8Q980.0 194.8 976.9 197.9Q973.8 201.0 968.6 201.0ZM950.4 222.0H916.8V150.2Q919.0 149.6 923.1 148.89999999999998Q927.2 148.2 931.8 148.2Q941.6 148.2 946.0 151.6Q950.4 155.0 950.4 164.2Z" fill="#1B1A1A"></path><path d="M1092.4 221.4Q1092.4 237.4 1085.9365638766521 248.9823529411765Q1079.473127753304 260.56470588235294 1067.7004405286343 266.88235294117646Q1055.9277533039647 273.2 1040.0 273.2Q1024.1941860465115 273.2 1012.3970930232558 267.0Q1000.6 260.8 994.1 249.2Q987.6 237.6 987.6 221.4Q987.6 205.50326086956522 994.2 193.9516304347826Q1000.8 182.39999999999998 1012.6 176.1Q1024.4 169.8 1040.0745762711865 169.8Q1055.749152542373 169.8 1067.5050847457628 176.1905325443787Q1079.2610169491525 182.58106508875738 1085.8305084745762 194.1905325443787Q1092.4 205.8 1092.4 221.4ZM1039.9537735849055 196.39999999999998Q1031.8 196.39999999999998 1027.1 202.89999999999998Q1022.4 209.4 1022.4 221.4Q1022.4 233.8 1027.041095890411 240.2Q1031.682191780822 246.6 1040.0 246.6Q1048.4 246.6 1053.0 240.1Q1057.6 233.6 1057.6 221.4Q1057.6 209.6 1052.9146226415094 203.0Q1048.2292452830188 196.39999999999998 1039.9537735849055 196.39999999999998Z" fill="#1B1A1A"></path><path d="M1167.1999999999998 243.8V185.8H1201.0V248.6Q1201.0 253.6 1198.9 257.2Q1196.8 260.8 1192.1999999999998 263.6Q1186.3999999999999 267.4 1177.1999999999998 270.29999999999995Q1168.0 273.2 1156.1999999999998 273.2Q1138.8 273.2 1126.4 267.4Q1114.0 261.6 1107.4 250.10000000000002Q1100.8 238.6 1100.8 221.8Q1100.8 204.2 1107.6 192.7Q1114.3999999999999 181.2 1126.1 175.5Q1137.8 169.8 1152.1999999999998 169.8Q1159.1999999999998 169.8 1164.3999999999999 171.2Q1169.6 172.6 1173.0 174.39999999999998V202.0Q1170.3999999999999 200.0 1166.2999999999997 198.2Q1162.1999999999998 196.39999999999998 1157.0 196.39999999999998Q1150.1999999999998 196.39999999999998 1145.2999999999997 199.2Q1140.3999999999999 202.0 1137.7999999999997 207.6Q1135.1999999999998 213.2 1135.1999999999998 221.8Q1135.1999999999998 234.4 1140.6999999999998 240.4Q1146.1999999999998 246.4 1156.0 246.4Q1159.6 246.4 1162.6 245.5Q1165.6 244.6 1167.1999999999998 243.8ZM1201.0 192.2H1167.0V139.6Q1169.1999999999998 139.0 1173.2999999999997 138.39999999999998Q1177.3999999999999 137.79999999999998 1182.1999999999998 137.79999999999998Q1192.1999999999998 137.79999999999998 1196.6 141.09999999999997Q1201.0 144.39999999999998 1201.0 153.8Z" fill="#1B1A1A"></path><path d="M1318.8 221.4Q1318.8 237.4 1312.3365638766518 248.9823529411765Q1305.8731277533038 260.56470588235294 1294.1004405286344 266.88235294117646Q1282.3277533039648 273.2 1266.3999999999999 273.2Q1250.5941860465116 273.2 1238.797093023256 267.0Q1227.0 260.8 1220.5 249.2Q1214.0 237.6 1214.0 221.4Q1214.0 205.50326086956522 1220.6 193.9516304347826Q1227.2 182.39999999999998 1239.0 176.1Q1250.8 169.8 1266.4745762711864 169.8Q1282.1491525423728 169.8 1293.9050847457627 176.1905325443787Q1305.6610169491526 182.58106508875738 1312.2305084745763 194.1905325443787Q1318.8 205.8 1318.8 221.4ZM1266.3537735849056 196.39999999999998Q1258.2 196.39999999999998 1253.5 202.89999999999998Q1248.8 209.4 1248.8 221.4Q1248.8 233.8 1253.441095890411 240.2Q1258.0821917808219 246.6 1266.3999999999999 246.6Q1274.8 246.6 1279.4 240.1Q1284.0 233.6 1284.0 221.4Q1284.0 209.6 1279.3146226415095 203.0Q1274.629245283019 196.39999999999998 1266.3537735849056 196.39999999999998Z" fill="#1B1A1A"></path></svg><button id="btnTerminar">Finalizar</button></div>
+    <div id="tiendaBox"><i id="puntoTienda"></i><b id="tituloConteo">Conteo</b> <span class="chip" id="chipTipo"></span><span id="estadoSync" class="ok">Guardado</span></div>
     <div class="franja" style="margin-top:0"><i style="background:#D7140F"></i><i style="background:#1F6E8C"></i><i style="background:#E39B1B"></i><i style="background:#6F9A3C"></i><i style="background:#F08A5D"></i></div>
     <div id="cam"><video id="v" playsinline muted></video><div id="guia"></div>
       <div id="pista">Apunta el código a unos 20–30 cm</div><div id="destello"></div><div id="pausa">Cámara en pausa</div></div>
@@ -170,7 +173,6 @@ td.n b{font-family:var(--titulos);font-size:20px}
       <button class="sec" id="btnCam">Pausar</button>
       <button class="sec" id="btnZoom" style="display:none">Zoom 2x</button>
       <button class="sec" id="btnLuz" style="display:none">Luz</button>
-      <span id="estadoSync" class="ok">Guardado</span>
     </div>
   </div>
   <div class="cont">
@@ -193,6 +195,7 @@ td.n b{font-family:var(--titulos);font-size:20px}
   <div class="cont">
     <h1 id="tituloRes">Comparación</h1>
     <div id="infoRes" class="mini"></div>
+    <div id="actRow"><span id="horaAct" class="mini"></span><button class="link" id="btnActualizar">↻ Actualizar</button></div>
     <div class="tarjeta" id="kpis"></div>
     <div id="bloqueDif">
       <h2>Diferencias: recontar juntos</h2>
@@ -200,16 +203,15 @@ td.n b{font-family:var(--titulos);font-size:20px}
       <table><thead id="cabDif"></thead><tbody id="tDif"></tbody></table>
     </div>
     <div id="bloqueSin"></div>
-    <div id="bloqueOk"><div class="etq" id="tituloOk">Productos que coinciden</div>
+    <div id="bloqueOk" style="margin-top:22px"><h2 id="tituloOk">Productos que coinciden</h2>
       <table><thead><tr><th>Producto</th><th class="n">Cantidad</th></tr></thead><tbody id="tOk"></tbody></table></div>
     <div style="height:16px"></div>
-    <button class="sec ancho" id="btnActualizar">Actualizar</button>
-    <div class="mini" id="horaAct" style="text-align:center;margin-top:4px"></div>
-    <div style="height:8px"></div>
+
     <button class="pri" id="btnCerrar">Cerrar conteo y descargar Excel</button>
     <button class="pri" id="btnExcel" style="display:none">Descargar Excel</button>
     <div style="height:8px"></div>
     <button class="sec ancho" id="btnInicioRes">Ir al inicio</button>
+    <button class="cancelar-ses ancho" id="btnCancelarRes" style="display:none;text-align:center;margin-top:12px">Cancelar este conteo</button>
   </div>
 </section>
 
@@ -360,7 +362,7 @@ function toast(t, ms = 3500){ const e = $('toast'); e.textContent = t; e.classLi
 async function pantallaInicio(){
   ir('pInicio');
   $('hola').textContent = 'Hola, ' + String(YO.nombre || '').split(' ')[0];
-  $('perfilTxt').textContent = YO.nombre + ' · ' + YO.perfil;
+  $('perfilTxt').textContent = YO.perfil;
   $('msgInicio').textContent = '';
   if (!$('abiertas').innerHTML){ $('secAbiertas').style.display = 'block'; $('abiertas').innerHTML = '<div class="esqueleto"></div>'; }
   try {
@@ -369,9 +371,11 @@ async function pantallaInicio(){
     // conteos abiertos: unirme, continuar o ver comparación
     $('secAbiertas').style.display = ab.length ? 'block' : 'none';
     $('abiertas').innerHTML = ab.map(x => `<div class="tarjeta tienda fila-ses" style="border-left-color:${colorTienda(x.tienda)}"><div><b>${esc(x.tienda)}</b> <span class="chip ${x.tipo === 'Oficial' ? 'oficial' : 'control'}">${esc(x.tipo)}</span>
-      <div class="mini">Desde ${esc(fechaHora(x.inicio))} · ${esc(x.contadores.join(', '))}</div></div>
+      <div class="mini">Desde ${esc(fechaHora(x.inicio))} · ${esc(x.contadores.join(', '))}</div>
+      ${YO.perfil === 'Gerente' ? `<button class="cancelar-ses" data-c="${esc(x.sesion)}" data-t="${esc(x.tienda)}">Cancelar este conteo</button>` : ''}</div>
       <button class="${x.yoCuento && !x.yoTermine ? 'pri' : 'sec'}" data-s="${esc(x.sesion)}">${x.yoTermine ? 'Ver comparación' : x.yoCuento ? 'Continuar' : 'Unirme'}</button></div>`).join('');
     $('abiertas').querySelectorAll('button[data-s]').forEach(b => b.onclick = () => unirme(b.dataset.s, b));
+    $('abiertas').querySelectorAll('button.cancelar-ses').forEach(b => b.onclick = () => pedirCancelar(b.dataset.c, b.dataset.t));
     // nuevo conteo: solo tiendas sin conteo abierto
     const ocupadas = ab.map(x => x.tienda), libres = (CAT.tiendas || []).filter(t => !ocupadas.includes(t));
     $('tienda').innerHTML = libres.map(t => `<option>${esc(t)}</option>`).join('');
@@ -390,6 +394,14 @@ function abrirSesion(s, termine){
   SES = { sesion: s.sesion, tienda: s.tienda, tipo: s.tipo, terminado: !!termine }; LS.set('sesion', SES);
   MIO = LS.get('mio_' + SES.sesion + '_' + YO.nombre, {}); ULT = LS.get('ult_' + SES.sesion + '_' + YO.nombre, Object.keys(MIO));
   if (termine) mostrarResumen(); else entrarConteo();
+}
+function pedirCancelar(id, tienda){
+  $('hfTitulo').textContent = '¿Cancelar el conteo de ' + tienda + '?';
+  $('hfTxt').textContent = 'Se usa para conteos de prueba o abiertos por error. Queda registrado como cancelado y deja de aparecer; lo contado no cuenta para nada.';
+  $('hfSi').textContent = 'Sí, cancelar'; $('hfSi').style.display = 'block'; $('hfMsg').textContent = '';
+  confirmar = async () => { try { await api('cancelar', { sesion: id }); cerrarHoja(true); toast('Conteo cancelado'); if (SES && SES.sesion === id){ SES = null; LS.set('sesion', null); } pantallaInicio(); }
+    catch(e){ $('hfMsg').innerHTML = `<span class="error">${esc(e.message)}</span>`; } };
+  abrirHoja('hConfirmar');
 }
 async function unirme(id, boton){
   boton.disabled = true; cargando(boton, true);
@@ -656,6 +668,9 @@ function etiquetas(R){
   quienes.forEach(n => { const p = perf[n]; idx[p] = (idx[p] || 0) + 1; et[n] = cuenta[p] > 1 ? `${p} ${idx[p]}` : p; });
   return { quienes, et, perf };
 }
+// Nombre corto para encabezados: el primer nombre; si dos se llaman igual, el nombre completo
+function nomCol(q){ const n = (RES.nombres && RES.nombres[q]) || q, pri = n.split(' ')[0];
+  const iguales = Object.values(RES.nombres || {}).filter(x => x.split(' ')[0] === pri).length; return iguales > 1 ? n : pri; }
 function analizar(R){
   const { quienes } = etiquetas(R), tot = R.totales || {};
   const filas = Object.keys(tot).map(clave => {
@@ -668,31 +683,32 @@ function analizar(R){
 }
 function puedoCerrar(R){ if (SES && SES.soloVer) return false; if (R.estado !== 'Abierta') return false; if (YO.perfil === 'Gerente') return true; return R.tipo !== 'Oficial' && YO.perfil === 'Encargado'; }
 async function mostrarResumen(){
-  ir('pResumen'); $('infoRes').textContent = 'Cargando…';
+  if (!$('pResumen').classList.contains('on')){ ir('pResumen'); $('infoRes').textContent = 'Cargando…'; }
   try { RES = await api('resumen', { sesion: SES.sesion }); } catch(e){ $('infoRes').innerHTML = `<span class="error">${esc(e.message)}</span>`; return; }
   const espera = !RES.totales, oficial = RES.tipo === 'Oficial', cerrado = RES.estado === 'Cerrada';
   $('tituloRes').textContent = (cerrado ? 'Conteo cerrado ✓ · ' : 'Comparación · ') + SES.tienda;
-  $('btnActualizar').style.display = cerrado ? 'none' : 'block';
-  $('horaAct').textContent = cerrado ? '' : 'Actualizado a las ' + hora(Date.now());
+  $('actRow').style.display = cerrado ? 'none' : 'flex';
+  $('horaAct').textContent = 'Actualizado a las ' + hora(Date.now());
   ['bloqueDif','bloqueSin','bloqueOk'].forEach(id => $(id).style.display = espera ? 'none' : '');
   $('btnExcel').style.display = cerrado ? 'block' : 'none';
+  $('btnCancelarRes').style.display = !cerrado && YO.perfil === 'Gerente' && !(SES && SES.soloVer) ? 'block' : 'none';
   $('btnCerrar').style.display = !espera && puedoCerrar(RES) ? 'block' : 'none';
   const chip = `<span class="chip ${oficial ? 'oficial' : 'control'}">${oficial ? 'Oficial' : 'De control: no válido para ajustes'}</span>`;
   if (espera){
     $('infoRes').innerHTML = chip + '<br>Tu conteo quedó guardado. Es a ciegas: los números se ven cuando todos finalicen.';
-    $('kpis').innerHTML = `<div class="kpi sin" style="flex:1"><span>Esperando a</span><div style="font-weight:800;margin-top:4px">${esc(RES.faltan.join(', '))}</div><div class="mini">Toca "Actualizar" en un rato.</div></div>`; return;
+    $('kpis').innerHTML = `<div class="kpi sin" style="flex:1"><span>Esperando a</span><div style="font-weight:800;margin-top:4px">${esc((RES.faltanNombres || RES.faltan).join(', '))}</div><div class="mini">Toca "Actualizar" en un rato.</div></div>`; return;
   }
   const { quienes, filas } = analizar(RES), { et } = etiquetas(RES);
   const dif = filas.filter(f => f.final == null || (f.reconteo != null && !f.iguales)), pend = filas.filter(f => f.final == null), sinId = filas.filter(f => esSin(f.clave));
   const coinciden = filas.filter(f => f.iguales && f.reconteo == null), recontados = filas.filter(f => f.reconteo != null);
-  $('infoRes').innerHTML = chip + '<br>Inició ' + esc(fechaHora(RES.inicio)) + ' · ' + quienes.map(q => `${esc(et[q])}: ${esc(q)} (${esc(rango(RES.horas[q]?.desde, RES.horas[q]?.hasta)) || 'sin escaneos'})`).join(' · ')
+  $('infoRes').innerHTML = chip + ' Inició ' + esc(fechaHora(RES.inicio))
     + (cerrado ? `<br><span class="bien">Cerrado ${esc(fechaHora(RES.cierre))} por ${esc(RES.cerradaPor)}.</span>` : '')
-    + (!puedoCerrar(RES) && RES.estado === 'Abierta' ? `<br><span class="mini">${oficial ? 'Lo cierra un gerente.' : 'Lo cierra el encargado o un gerente.'}</span>` : '');
+    + (!puedoCerrar(RES) && RES.estado === 'Abierta' ? `<br>${oficial ? 'Lo cierra un gerente.' : 'Lo cierra el encargado o un gerente.'}` : '');
   $('kpis').innerHTML = `<div class="kpi tot"><span>Productos</span><b>${filas.length}</b></div><div class="kpi ok"><span>Coinciden</span><b>${coinciden.length}</b></div>`
     + (cerrado ? `<div class="kpi caja" style="border-top-color:var(--petroleo)"><span>Recontados</span><b>${recontados.length}</b></div>`
                : `<div class="kpi porrec"><span>Por recontar</span><b>${pend.length}</b></div>`)
     + (sinId.length ? `<div class="kpi sin"><span>Sin identificar</span><b>${sinId.length}</b></div>` : '');
-  $('cabDif').innerHTML = `<tr><th>Producto</th>${quienes.map(q => `<th class="n">${esc(et[q])}</th>`).join('')}<th class="n">Juntos</th></tr>`;
+  $('cabDif').innerHTML = `<tr><th>Producto</th>${quienes.map(q => `<th class="n">${esc(nomCol(q))}</th>`).join('')}<th class="n">Juntos</th></tr>`;
   $('tDif').innerHTML = dif.map(f => `<tr><td><div class="d">${esc(f.desc)}</div><div class="c">${esc(esSin(f.clave) ? '' : f.clave)}</div></td>${f.vals.map(v => `<td class="n">${fmt(v)}</td>`).join('')}
     <td class="n" style="width:84px"><input class="rec" data-k="${esc(f.clave)}" data-prev="${f.reconteo ?? ''}" value="${f.reconteo ?? ''}" inputmode="decimal" autocomplete="off" style="padding:8px;text-align:right" ${RES.estado !== 'Abierta' ? 'disabled' : ''}></td></tr>`).join('')
     || `<tr><td class="bien">Sin diferencias: los conteos coinciden.</td></tr>`;
@@ -727,6 +743,7 @@ async function cerrarConteo(){
   } catch(e){ $('hfMsg').innerHTML = `<span class="error">${esc(e.message)}</span>`; }
 }
 $('btnExcel').onclick = () => excel();
+$('btnCancelarRes').onclick = () => pedirCancelar(SES.sesion, SES.tienda);
 
 /* ---------------- Excel con la marca ---------------- */
 async function excel(){
@@ -785,7 +802,7 @@ async function excel(){
   const ws3 = wb.addWorksheet('Datos', { properties: { tabColor: { argb: 'FF1F6E8C' } } });
   encabezado(ws3, 'Datos del conteo', 2);
   const filasDatos = [['Tienda', RES.tienda], ['Tipo de conteo', oficial ? 'Oficial' : 'De control (no válido para ajustes)'], ['Sesión', RES.sesion],
-    ...quienes.map(q => [et[q], `${q} · contó ${rango(RES.horas[q]?.desde, RES.horas[q]?.hasta) || 'sin escaneos'}`]),
+    ...quienes.map(q => [et[q], `${(RES.nombres && RES.nombres[q]) || q} · contó ${rango(RES.horas[q]?.desde, RES.horas[q]?.hasta) || 'sin escaneos'}`]),
     ['Inicio del conteo', fechaHora(RES.inicio)], ['Cierre del conteo', fechaHora(RES.cierre)], ['Cerrado por', RES.cerradaPor || '—'],
     ['Descargado', fechaHora(Date.now())],
     ['Nota', 'Conteo a ciegas: cada persona contó sin ver el número de la otra y las diferencias se recontaron juntos. Cantidades en la unidad de FacHilda. "Contado (hora)" sirve para cruzar contra ventas hechas durante el conteo.']];
