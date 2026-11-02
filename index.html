@@ -100,11 +100,6 @@ td.n b{font-family:var(--titulos);font-size:20px}
     <input id="pin" name="pin_inv" type="password" inputmode="numeric" autocomplete="off">
     <p id="msgEntrar" class="mini"></p>
     <button class="pri" id="btnEntrar">Entrar</button>
-    <div id="cfgBox" style="display:none">
-      <label>Dirección de la hoja (termina en /exec)</label>
-      <input id="cfgUrl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-    </div>
-    <button class="link" id="btnCfg">Cambiar dirección de la hoja</button>
   </div>
 </section>
 
@@ -242,7 +237,7 @@ const $ = id => document.getElementById(id);
 const LS = { get(k, d){ try{ const v = localStorage.getItem('inv_'+k); return v == null ? d : JSON.parse(v); }catch(e){ return d; } },
              set(k, v){ try{ localStorage.setItem('inv_'+k, JSON.stringify(v)); }catch(e){} } };
 
-let URLH = LS.get('url', '') || APP_URL;
+const URLH = APP_URL;   // la dirección de la hoja va fija en la app; no se puede cambiar desde el celular
 let YO = LS.get('yo', null);            // { usuario, pin, nombre, perfil }
 let CAT = { productos: [], codigos: {}, tiendas: [] }, DESC = {};
 let SES = LS.get('sesion', null);       // { sesion, tienda, tipo, terminado }
@@ -298,11 +293,9 @@ function cerrarHoja(silencio){ if (!hojaAbierta) return; $(hojaAbierta).classLis
 $('velo').onclick = () => cerrarHoja();
 
 /* ---------------- entrar ---------------- */
-$('btnCfg').onclick = () => { $('cfgBox').style.display = 'block'; $('cfgUrl').value = URLH; $('btnCfg').style.display = 'none'; };
 $('btnEntrar').onclick = async () => {
-  if ($('cfgBox').style.display === 'block' && $('cfgUrl').value.trim()){ URLH = $('cfgUrl').value.trim(); LS.set('url', URLH); }
   const usuario = $('usu').value.trim(), pin = $('pin').value.trim();
-  if (!URLH){ $('msgEntrar').innerHTML = '<span class="error">Falta la dirección de la hoja.</span>'; $('btnCfg').click(); return; }
+  if (!URLH){ $('msgEntrar').innerHTML = '<span class="error">La app no está conectada a la hoja. Avisa a un gerente.</span>'; return; }
   $('btnEntrar').disabled = true; $('msgEntrar').textContent = 'Entrando…';
   try {
     YO = { usuario, pin };
@@ -728,7 +721,7 @@ async function excel(){
 /* ---------------- arranque ---------------- */
 (async () => {
   const d = LS.get('catalogo', null); if (d) usarCatalogo(d);
-  if (!YO || !YO.usuario){ ir('pEntrar'); if (!URLH) $('btnCfg').click(); return; }
+  if (!YO || !YO.usuario){ ir('pEntrar'); return; }
   if (SES && SES.sesion){
     MIO = LS.get('mio_' + SES.sesion + '_' + YO.nombre, {}); ULT = LS.get('ult_' + SES.sesion + '_' + YO.nombre, Object.keys(MIO));
     cargarCatalogo().catch(() => {});
